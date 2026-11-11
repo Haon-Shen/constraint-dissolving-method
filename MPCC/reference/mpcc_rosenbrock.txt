@@ -1,0 +1,10 @@
+Interval-constrained Rosenbrock problem, 1000 starting points (seed 2021)
+CD: tau = 10, eta = 0.5, alpha = 10;  ALM: tau = 10, eta = 0.8;  eps_out = 0.0001, eps_inner = 0.0001/sqrt(k+1)
+
+Alg.          c     Outer      Inner      f-ev.   N_glob   N_loc   N_oth   N_succ  max infeas    time (s)
+CD       0.01     4.050     32.154       54.0      968      32       0     1000    7.12e-13    5.80e-04
+CD        0.1     2.963     22.569       63.6      934      66       0     1000    1.39e-07    5.15e-04
+CD          1     2.035     16.170       51.8      906      94       0     1000    1.36e-06    4.04e-04
+CD         10     1.458     16.681       50.8      831     169       0     1000    2.20e-06    3.91e-04
+CD        100     1.298     33.002      164.8      813     187       0     1000    5.61e-06    1.23e-03
+ALM         ---    15.488     56.778      104.6      668     332       0     1000    9.99e-05    5.15e-04

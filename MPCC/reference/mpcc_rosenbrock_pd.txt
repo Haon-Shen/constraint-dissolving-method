@@ -1,0 +1,15 @@
+Interval-constrained Rosenbrock problem, 1000 starting points (seed 2021)
+PD: tau = 1.1, subproblems by [KL, Alg. 2] with H = I, gamma = 1e-05, beta = 0.5, stop ||grad_x q||_inf <= 0.0001/sqrt(k+1);  eps_out = 0.0001 on ||x-y||_inf + dist_C(G(x))
+CD and ALM from mpcc_rosenbrock.mat; for PD, Inner = alt. = x-steps (= projections onto D), infeas = dist_C(G(y))
+
+Alg.          c     Outer      Inner      f-ev.   N_glob   N_loc   N_oth   N_succ  max infeas  avg infeas    time (s)      alt.
+CD       0.01     4.050     32.154       54.0      968      32       0     1000    7.12e-13    1.29e-14    5.80e-04       NaN
+CD        0.1     2.963     22.569       63.6      934      66       0     1000    1.39e-07    2.61e-10    5.15e-04       NaN
+CD          1     2.035     16.170       51.8      906      94       0     1000    1.36e-06    1.23e-08    4.04e-04       NaN
+CD         10     1.458     16.681       50.8      831     169       0     1000    2.20e-06    5.89e-08    3.91e-04       NaN
+CD        100     1.298     33.002      164.8      813     187       0     1000    5.61e-06    3.59e-07    1.23e-03       NaN
+ALM         ---    15.488     56.778      104.6      668     332       0     1000    9.99e-05    7.34e-05    5.15e-04       NaN
+PD          ---   104.795   3075.530    50351.7      800     200       0     1000    1.00e-04    9.59e-05    3.79e-02    3075.5
+
+PD: runs with a subproblem not reaching the gradient tolerance: 1000 of 1000
+PD: subproblems terminated by a failed line search (rounding level): 48888 of 104795

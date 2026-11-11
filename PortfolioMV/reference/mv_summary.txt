@@ -1,0 +1,61 @@
+
+Sparse mean-variance problems; CD: c = 10, alpha = 0.01, tau = 10, eta = 0.5;  ALM: tau = 10, eta = 0.8;  eps_out = 1e-05
+
+Data sets
+data set         n  rem.     T  T_est    K  windows   rho (%)  nnz relaxed
+nasdaq100       95     0   930    651   10      279    0.1012           17
+ftse100         97     0   928    650   10      278    0.0167           21
+sp_bear        490    13   653    457   10      196    0.1629           24
+sp_covid       478    25   773    541   10      232    0.0579           48
+sp_bull        497     6   763    534   10      229    0.0064           37
+
+In-sample (first window)
+data set     alg    outer   inner  time(ms)          f    mu'x-rho Mean(1e-2)       Std        SR        ER        RR       nnz
+nasdaq100    CD         3     128      5.36   0.729026   -9.86e-07     0.1012    0.0121    0.0719   -0.0000    2.2500        10
+nasdaq100    ALM       15    1010     13.72   0.728840   -8.23e-06     0.1012    0.0121    0.0719   -0.0001    2.2505        10
+ftse100      CD         5    2238     69.05   0.422959   +9.03e-03     0.0257    0.0092    0.0123    0.5414    2.5809        10
+ftse100      ALM        5     172      2.55   0.422957   +9.03e-03     0.0257    0.0092    0.0123    0.5415    2.5809        10
+sp_bear      CD         3     149      9.58   0.460602   -1.04e-06     0.1629    0.0096    0.1547   -0.0000    3.2631        10
+sp_bear      ALM       33    2480    121.59   0.466940   -9.07e-06     0.1629    0.0097    0.1537   -0.0001    3.2188        10
+sp_covid     CD         3     670     40.51   0.165951   +6.28e-03     0.0642    0.0058    0.0865    0.1083    2.3180        10
+sp_covid     ALM        7     355     14.38   0.163157   -9.20e-06     0.0579    0.0057    0.0762   -0.0002    2.3577        10
+sp_bull      CD         3     586     38.99   0.258841   +8.21e-03     0.0146    0.0072    0.0003    1.2771    2.8387        10
+sp_bull      ALM        4     140      4.84   0.257148   +1.91e-03     0.0083    0.0072   -0.0085    0.2965    2.8574        10
+
+Rolling windows: solver comparison (means over all windows)
+data set      windows |  Cwin  Awin   tie |    outC    outA |     innC     innA |      ms C      ms A |     okC     okA |   activeC   activeA | ties with same support / non-ties with same support
+nasdaq100         279 |   155    54    70 |    2.97   13.01 |    499.4   1329.7 |     21.79     28.23 |     279     279 |       232       254 | 61 / 0   (max |rel| on ties 9.6e-05, rel range [-0.011, +0.005])
+ftse100           278 |    88    63   127 |    3.28    9.73 |    764.0    440.5 |     27.03      7.98 |     278     278 |       152       162 | 116 / 0   (max |rel| on ties 7.2e-05, rel range [-0.010, +0.007])
+sp_bear           196 |   134    49    13 |    2.98   15.82 |    464.1   1622.9 |     35.79     85.90 |     196     196 |       183       192 | 5 / 0   (max |rel| on ties 9.2e-05, rel range [-0.022, +0.011])
+sp_covid          232 |    30    46   156 |    2.99    6.61 |    544.5    437.1 |     33.11     20.60 |     232     232 |        33        36 | 151 / 0   (max |rel| on ties 9.9e-05, rel range [-0.007, +0.003])
+sp_bull           229 |   126    74    29 |    3.05   10.69 |    603.4   1125.6 |     49.79     61.67 |     229     229 |       176       193 | 26 / 0   (max |rel| on ties 7.9e-05, rel range [-0.018, +0.008])
+
+Out-of-sample
+data set     alg    Mean(1e-2)       Std        SR        RR final wealth
+nasdaq100    CD         0.0029    0.0092   -0.0125    2.6292       0.9962
+nasdaq100    ALM        0.0017    0.0091   -0.0139    2.5944       0.9931
+nasdaq100    1/N        0.0695    0.0140    0.0394    1.0000       1.1814
+ftse100      CD        -0.0083    0.0072   -0.0315    2.1558       0.9701
+ftse100      ALM       -0.0076    0.0071   -0.0312    2.1533       0.9722
+ftse100      1/N        0.0220    0.0100    0.0076    1.0000       1.0484
+sp_bear      CD        -0.0732    0.0104   -0.0846    2.3218       0.8572
+sp_bear      ALM       -0.0607    0.0101   -0.0746    2.3372       0.8790
+sp_bear      1/N       -0.0909    0.0147   -0.0717    1.0000       0.8193
+sp_covid     CD         0.0213    0.0171    0.0041    3.1917       1.0157
+sp_covid     ALM        0.0287    0.0173    0.0083    3.1944       1.0327
+sp_covid     1/N        0.1184    0.0249    0.0418    1.0000       1.2242
+sp_bull      CD         0.0908    0.0057    0.1352    1.8450       1.2267
+sp_bull      ALM        0.0994    0.0059    0.1441    1.7946       1.2504
+sp_bull      1/N        0.1431    0.0077    0.1679    1.0000       1.3781
+
+Mean time per oracle evaluation (microseconds), CD / ALM / ratio
+nasdaq100       15.8     8.0   1.99
+ftse100         15.9     8.3   1.91
+sp_bear         29.2    19.2   1.52
+sp_covid        28.2    18.0   1.57
+sp_bull         29.4    19.5   1.50
+
+Totals
+out-of-sample analysis (index data sets)   windows  557, runs 1114 (successful 1114) | CD lower 243, ALM lower 117, ties 197 | outer CD 2.97-3.28, ALM 9.73-13.01
+market regimes (S&P500 data sets)          windows  657, runs 1314 (successful 1314) | CD lower 290, ALM lower 169, ties 198 | outer CD 2.98-3.05, ALM 6.61-15.82
+all data sets                              windows 1214, runs 2428 (successful 2428) | CD lower 533, ALM lower 286, ties 395 | outer CD 2.97-3.28, ALM 6.61-15.82
