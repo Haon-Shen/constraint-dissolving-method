@@ -1,5 +1,5 @@
-The stock return data of Section 5.2.2 are not distributed with this
-repository; they are available from the corresponding author on reasonable
+The stock return data of the mean-variance experiment are not distributed
+with this repository; they are available from the authors on reasonable
 request. Place the files
 
   init_stock_data.mat
